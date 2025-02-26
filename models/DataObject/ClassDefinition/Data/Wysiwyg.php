@@ -99,10 +99,6 @@ class Wysiwyg extends Data implements ResourcePersistenceAwareInterface, QueryRe
      */
     public function getDataForResource(mixed $data, ?DataObject\Concrete $object = null, array $params = []): ?string
     {
-        if (is_string($data) && ($params['sanitize'] ?? true)) {
-            $data = self::getWysiwygSanitizer()->sanitizeFor('body', $data);
-        }
-
         return Text::wysiwygText($data, [
             'object' => $params['owner'] ?? null,
             'context' => $this,
